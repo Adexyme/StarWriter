@@ -1,4 +1,4 @@
-class UndoRedojs {
+export class UndoRedojs {
   private stack: string[];
   private currentIndex: number;
   private cooldownState: number;

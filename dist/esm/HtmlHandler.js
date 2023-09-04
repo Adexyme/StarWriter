@@ -1,7 +1,8 @@
 import { UtilityCls } from "./UtilityCls";
-import { MarkdownParser } from "./MarkdownParser";
+//import { MarkdownParser } from "./MarkdownParser";
+import { MdParser } from "./MdParser";
 export class HtmlHandler {
-    constructor(utilityCls = UtilityCls, markdownParser = new MarkdownParser()) {
+    constructor(utilityCls = UtilityCls, markdownParser = new MdParser()) {
         this.utilityCls = utilityCls;
         this.markdownParser = markdownParser;
     }
@@ -11,7 +12,7 @@ export class HtmlHandler {
         if (markdown !== null) {
             markdown.onkeyup = (e) => {
                 if (markdown.value) {
-                    markdownOutput.innerHTML = MarkdownParser.parse(markdown.value);
+                    markdownOutput.innerHTML = this.markdownParser.parse(markdown.value);
                 }
                 else
                     markdownOutput.innerHTML = "<p></p>";

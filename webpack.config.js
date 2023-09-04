@@ -5,6 +5,7 @@ module.exports = (env, argv) => {
     entry: {
       index: path.resolve(__dirname, "./dist/esm/index.js"),
     },
+    mode: "development",
     output: {
       path: path.resolve(__dirname, "./dist/umd"), // builds to ./dist/umd/
       filename: "[name].js", // index.js

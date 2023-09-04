@@ -1,12 +1,12 @@
-import { UtilityCls } from "UtilityCls";
-import { MarkdownParser } from "MarkdownParser";
+import { UtilityCls } from "./UtilityCls";
+import { MarkdownParser } from "./MarkdownParser";
 
 export class HtmlHandler {
   constructor(
     private utilityCls = UtilityCls,
     private markdownParser: MarkdownParser = new MarkdownParser()
   ) {}
-  public TextChangeHandler(id: string, output: string): void {
+  public TextChangeHandler(): void {
     let markdown = <HTMLTextAreaElement>(
       document.getElementById(this.utilityCls.inputElement)
     );

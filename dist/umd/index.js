@@ -20,13 +20,23 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./dist/esm/ElementInserter.js":
+/*!*************************************!*\
+  !*** ./dist/esm/ElementInserter.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   ElementInserter: () => (/* binding */ ElementInserter)\n/* harmony export */ });\n/* harmony import */ var _UtilityCls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UtilityCls */ \"./dist/esm/UtilityCls.js\");\n\nclass ElementInserter {\n  constructor(cursorPosition = document.getElementById(_UtilityCls__WEBPACK_IMPORTED_MODULE_0__.UtilityCls.inputElement)) {\n    this.cursorPosition = cursorPosition;\n    this.insertAtCursorPosition = elem => {\n      var curPos = this.cursorPosition.selectionStart;\n      console.log(curPos);\n      let x = this.cursorPosition.value;\n      this.cursorPosition.value = x.slice(0, curPos) + elem + x.slice(curPos);\n    };\n  }\n}\n\n//# sourceURL=webpack://myLibrary/./dist/esm/ElementInserter.js?");
+
+/***/ }),
+
 /***/ "./dist/esm/HtmlHandler.js":
 /*!*********************************!*\
   !*** ./dist/esm/HtmlHandler.js ***!
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   HtmlHandler: () => (/* binding */ HtmlHandler)\n/* harmony export */ });\n/* harmony import */ var _UtilityCls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UtilityCls */ \"./dist/esm/UtilityCls.js\");\n/* harmony import */ var _MdParser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MdParser */ \"./dist/esm/MdParser.js\");\n\n//import { MarkdownParser } from \"./MarkdownParser\";\n\nclass HtmlHandler {\n  constructor(utilityCls = _UtilityCls__WEBPACK_IMPORTED_MODULE_0__.UtilityCls, markdownParser = new _MdParser__WEBPACK_IMPORTED_MODULE_1__.MdParser()) {\n    this.utilityCls = utilityCls;\n    this.markdownParser = markdownParser;\n  }\n  TextChangeHandler() {\n    let markdown = document.getElementById(this.utilityCls.inputElement);\n    let markdownOutput = document.getElementById(this.utilityCls.outputElement);\n    if (markdown !== null) {\n      markdown.onkeyup = e => {\n        if (markdown.value) {\n          markdownOutput.innerHTML = this.markdownParser.parse(markdown.value);\n        } else markdownOutput.innerHTML = \"<p></p>\";\n      };\n    }\n  }\n}\n\n//# sourceURL=webpack://myLibrary/./dist/esm/HtmlHandler.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   HtmlHandler: () => (/* binding */ HtmlHandler)\n/* harmony export */ });\n/* harmony import */ var _UtilityCls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UtilityCls */ \"./dist/esm/UtilityCls.js\");\n/* harmony import */ var _MdParser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MdParser */ \"./dist/esm/MdParser.js\");\n\n//import { MarkdownParser } from \"./MarkdownParser\";\n\nclass HtmlHandler {\n  constructor(markdownParser = new _MdParser__WEBPACK_IMPORTED_MODULE_1__.MdParser(), markdown = document.getElementById(_UtilityCls__WEBPACK_IMPORTED_MODULE_0__.UtilityCls.inputElement), markdownOutput = document.getElementById(_UtilityCls__WEBPACK_IMPORTED_MODULE_0__.UtilityCls.outputElement)) {\n    this.markdownParser = markdownParser;\n    this.markdown = markdown;\n    this.markdownOutput = markdownOutput;\n  }\n  TextChangeHandler() {\n    if (this.markdown !== null) {\n      this.markdown.onkeyup = e => {\n        if (this.markdown.value) {\n          this.markdownOutput.innerHTML = this.markdownParser.parse(this.markdown.value);\n        } else this.markdownOutput.innerHTML = \"<p></p>\";\n      };\n    }\n  }\n  onloadInit() {\n    this.markdownOutput.innerHTML = this.markdownParser.parse(this.markdown.value);\n  }\n}\n\n//# sourceURL=webpack://myLibrary/./dist/esm/HtmlHandler.js?");
 
 /***/ }),
 
@@ -66,7 +76,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _HtmlHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HtmlHandler */ \"./dist/esm/HtmlHandler.js\");\n/* harmony import */ var _UndoRedo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UndoRedo */ \"./dist/esm/UndoRedo.js\");\n\n\nconst htmlHD = new _HtmlHandler__WEBPACK_IMPORTED_MODULE_0__.HtmlHandler();\nhtmlHD.TextChangeHandler();\nconst myHistory = new _UndoRedo__WEBPACK_IMPORTED_MODULE_1__.UndoRedojs(5);\n\n//# sourceURL=webpack://myLibrary/./dist/esm/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _HtmlHandler__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HtmlHandler */ \"./dist/esm/HtmlHandler.js\");\n/* harmony import */ var _UndoRedo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UndoRedo */ \"./dist/esm/UndoRedo.js\");\n/* harmony import */ var _ElementInserter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ElementInserter */ \"./dist/esm/ElementInserter.js\");\n\n\n\nconst htmlHD = new _HtmlHandler__WEBPACK_IMPORTED_MODULE_0__.HtmlHandler();\nhtmlHD.onloadInit();\nhtmlHD.TextChangeHandler();\nconst eInserter = new _ElementInserter__WEBPACK_IMPORTED_MODULE_2__.ElementInserter();\neInserter.insertAtCursorPosition(\" elem: string \");\nconst myHistory = new _UndoRedo__WEBPACK_IMPORTED_MODULE_1__.UndoRedojs(5);\nconsole.log(document.getElementById(\"elemsHolderBtn\").children);\n\n//# sourceURL=webpack://myLibrary/./dist/esm/index.js?");
 
 /***/ })
 

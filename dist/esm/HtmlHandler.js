@@ -2,22 +2,24 @@ import { UtilityCls } from "./UtilityCls";
 //import { MarkdownParser } from "./MarkdownParser";
 import { MdParser } from "./MdParser";
 export class HtmlHandler {
-    constructor(utilityCls = UtilityCls, markdownParser = new MdParser()) {
-        this.utilityCls = utilityCls;
+    constructor(markdownParser = new MdParser(), markdown = (document.getElementById(UtilityCls.inputElement)), markdownOutput = (document.getElementById(UtilityCls.outputElement))) {
         this.markdownParser = markdownParser;
+        this.markdown = markdown;
+        this.markdownOutput = markdownOutput;
     }
     TextChangeHandler() {
-        let markdown = (document.getElementById(this.utilityCls.inputElement));
-        let markdownOutput = (document.getElementById(this.utilityCls.outputElement));
-        if (markdown !== null) {
-            markdown.onkeyup = (e) => {
-                if (markdown.value) {
-                    markdownOutput.innerHTML = this.markdownParser.parse(markdown.value);
+        if (this.markdown !== null) {
+            this.markdown.onkeyup = (e) => {
+                if (this.markdown.value) {
+                    this.markdownOutput.innerHTML = this.markdownParser.parse(this.markdown.value);
                 }
                 else
-                    markdownOutput.innerHTML = "<p></p>";
+                    this.markdownOutput.innerHTML = "<p></p>";
             };
         }
+    }
+    onloadInit() {
+        this.markdownOutput.innerHTML = this.markdownParser.parse(this.markdown.value);
     }
 }
 //# sourceMappingURL=HtmlHandler.js.map

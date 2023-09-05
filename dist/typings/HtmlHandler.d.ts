@@ -1,8 +1,9 @@
-import { UtilityCls } from "./UtilityCls";
 import { MdParser } from "./MdParser";
 export declare class HtmlHandler {
-    private utilityCls;
     private markdownParser;
-    constructor(utilityCls?: typeof UtilityCls, markdownParser?: MdParser);
+    private markdown;
+    private markdownOutput;
+    constructor(markdownParser?: MdParser, markdown?: HTMLTextAreaElement, markdownOutput?: HTMLLabelElement);
     TextChangeHandler(): void;
+    onloadInit(): void;
 }

@@ -26,7 +26,11 @@ export class MdParser {
     return "\n<pre>" + fullMatch + "</pre>";
   };
   private inlineCodeReplacer = function (fullMatch, tagStart, tagContents) {
-    return "<code>" + tagContents + "</code>";
+    return (
+      '<div class="row "><div class="col  text-bg-dark border  border-3 border-primary rounded-3 p-3 my-auto  mx-1 "><code  class=" text-white">' +
+      tagContents +
+      "</code></div></div>"
+    );
   };
   private imageReplacer = function (fullMatch, tagTitle, tagURL) {
     return '<img src="' + tagURL + '" alt="' + tagTitle + '" />';

@@ -1,4 +1,7 @@
-export class MdParser {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MdParser = void 0;
+class MdParser {
     constructor() {
         /***   Regex Markdown Parser by chalarangelo   ***/
         // Replaces 'regex' with 'replacement' in 'str'
@@ -121,4 +124,5 @@ export class MdParser {
         };
     }
 }
+exports.MdParser = MdParser;
 //# sourceMappingURL=MdParser.js.map

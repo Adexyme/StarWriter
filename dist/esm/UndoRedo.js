@@ -1,4 +1,7 @@
-export class UndoRedojs {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.UndoRedojs = void 0;
+class UndoRedojs {
     constructor(cooldown) {
         this.cooldown = cooldown;
         if (!cooldown || isNaN(cooldown) || cooldown <= 0)
@@ -77,4 +80,5 @@ export class UndoRedojs {
         return this.stack[this.currentIndex];
     }
 }
+exports.UndoRedojs = UndoRedojs;
 //# sourceMappingURL=UndoRedo.js.map

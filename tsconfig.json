@@ -2,13 +2,14 @@
   "compilerOptions": {
     /* Basic Options */
     "target": "ES2015" /* Build to ES2015 */,
-    "module": "ES2015" /* using ES2015 modules */,
+    "module": "NodeNext" /* using ES2015 modules */,
     "lib": ["es2015", "dom"] /* Using ES2015 features and DOM APIs  */,
     "declaration": true /* Generates corresponding'.d.ts' files. */,
     "declarationDir": "./dist/typings/" /* build '.d.ts' files to ./dist/typeings */,
     "outDir": "./dist/esm/" /* build to ./dist/esm/ */,
     "sourceMap": true,
-    "inlineSources": true
+    "inlineSources": true,
+    "moduleResolution": "nodenext"
   },
   "files": ["./src/index.ts"],
   "include": ["./src/**/*.ts"]

@@ -1,11 +1,11 @@
-import { HtmlHandler } from "./HtmlHandler";
-import { UndoRedojs } from "./UndoRedo";
-import { ElementInserter } from "./ElementInserter";
-const htmlHD = new HtmlHandler();
-htmlHD.onloadInit();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const HtmlHandler_1 = require("./HtmlHandler");
+const UndoRedo_1 = require("./UndoRedo");
+const htmlHD = new HtmlHandler_1.HtmlHandler();
+htmlHD.onloadIOElemInit();
 htmlHD.TextChangeHandler();
-const eInserter = new ElementInserter();
-eInserter.insertAtCursorPosition(" elem: string ");
-const myHistory = new UndoRedojs(5);
+htmlHD.onloadMarkdownTagMenuInit();
+const myHistory = new UndoRedo_1.UndoRedojs(5);
 console.log(document.getElementById("elemsHolderBtn").children);
 //# sourceMappingURL=index.js.map

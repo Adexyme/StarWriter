@@ -1,5 +1,9 @@
-export class MarkdownParser {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MarkdownParser = void 0;
+class MarkdownParser {
 }
+exports.MarkdownParser = MarkdownParser;
 //private utilityCls: UtilityCls;
 MarkdownParser.parse = (text) => {
     const toHTML = text

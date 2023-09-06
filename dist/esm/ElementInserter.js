@@ -1,6 +1,9 @@
-import { UtilityCls } from "./UtilityCls";
-export class ElementInserter {
-    constructor(cursorPosition = (document.getElementById(UtilityCls.inputElement))) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ElementInserter = void 0;
+const UtilityCls_1 = require("./UtilityCls");
+class ElementInserter {
+    constructor(cursorPosition = (document.getElementById(UtilityCls_1.UtilityCls.inputElement))) {
         this.cursorPosition = cursorPosition;
         this.insertAtCursorPosition = (elem) => {
             var curPos = this.cursorPosition.selectionStart;
@@ -10,4 +13,5 @@ export class ElementInserter {
         };
     }
 }
+exports.ElementInserter = ElementInserter;
 //# sourceMappingURL=ElementInserter.js.map

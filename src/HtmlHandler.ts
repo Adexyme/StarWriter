@@ -1,10 +1,13 @@
 import { UtilityCls } from "./UtilityCls";
 import { ElementInserter } from "./ElementInserter";
 import { MdParser } from "./MdParser";
-
+import { marked } from "marked";
+import { Remarkable } from "remarkable";
 export class HtmlHandler {
   constructor(
     private markdownParser: MdParser = new MdParser(),
+    private rmkbl = new Remarkable(),
+    private mkd = marked,
     private eInserter: ElementInserter = new ElementInserter(),
     private markdown = <HTMLTextAreaElement>(
       document.getElementById(UtilityCls.inputElement)
@@ -20,10 +23,12 @@ export class HtmlHandler {
     if (this.markdown !== null) {
       this.markdown.onkeyup = (e) => {
         if (this.markdown.value) {
-          this.markdownOutput.innerHTML = this.markdownParser.parse(
+          this.markdownOutput.innerHTML = this.rmkbl.render(
             this.markdown.value
           );
-        } else this.markdownOutput.innerHTML = "<p></p>";
+          //this.markdownOutput.innerHTML = this.mkd.parse(this.markdown.value);
+        } else
+          this.markdownOutput.innerHTML = "<h1>Edit This Heading To Start</h1>";
       };
     }
   }
@@ -41,8 +46,12 @@ export class HtmlHandler {
 
       elements[i].addEventListener("click", () => {
         this.eInserter.insertAtCursorPosition(
-          elements[i].getAttribute("data-tag-string")
+          "\r\n" + elements[i].getAttribute("data-tag-string")
         );
+
+        this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
+        //this.markdownOutput.innerHTML = this.mkd.parse(this.markdown.value);
+
         console.log("iteration worked", i);
       });
     }

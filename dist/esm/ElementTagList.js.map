@@ -1,0 +1,1 @@
+{"version":3,"file":"ElementTagList.js","sourceRoot":"","sources":["../../src/ElementTagList.ts"],"names":[],"mappings":";;AAAA,MAAM,KAAK,GAAG;CAEb,CAAC","sourcesContent":["const myObj = class {\r\n  readonly h1l: \"<h1>  </h1>\";\r\n};\r\n"]}

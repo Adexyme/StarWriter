@@ -27,9 +27,16 @@
         <div class="col">
           <button class="btn btn-sm border-end text-white">new</button
           ><button class="btn btn-sm border-end text-white">save</button
-          ><button class="btn btn-sm border-end text-white">undo</button
-          ><button class="btn btn-sm border-end text-white">redo</button
-          ><button class="btn btn-sm border-end text-white">export</button
+          ><span id="undoContainer"
+            ><button class="btn btn-sm border-end text-white">
+              undo
+            </button></span
+          ><span id="redoContainer"
+            ><button class="btn btn-sm border-end text-white">
+              redo
+            </button></span
+          ><button id="docExporter" class="btn btn-sm border-end text-white">
+            export</button
           ><button class="btn btn-sm border-end text-white">import</button>
         </div>
       </div>
@@ -111,12 +118,11 @@
           >
         </div>
         <div class="col-sm-6">
-          <label
+          <div
             id="oput"
             class="form-control bg-#f6d8ac"
             style="width: 100%; min-height: 100vh; background-color: #ffffff"
-          >
-          </label>
+          ></div>
         </div>
       </div>
     </div>

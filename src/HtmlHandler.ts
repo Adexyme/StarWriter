@@ -63,6 +63,8 @@ export class HtmlHandler {
         y: 10,
         width: 180,
         windowWidth: 1000,
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
       });
       console.log("PDF is being generated ");
     });

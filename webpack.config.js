@@ -16,5 +16,11 @@ module.exports = (env, argv) => {
     module: {
       rules: [{ test: /\.t|js$/, use: "babel-loader" }],
     },
+    externals: {
+      // only define the dependencies you are NOT using as externals!
+      canvg: "canvg",
+      //html2canvas: "html2canvas",
+      //dompurify: "dompurify",
+    },
   };
 };

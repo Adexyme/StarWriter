@@ -3,20 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.HtmlHandler = void 0;
 const UtilityCls_1 = require("./UtilityCls");
 const ElementInserter_1 = require("./ElementInserter");
-const MdParser_1 = require("./MdParser");
-const marked_1 = require("marked");
 const remarkable_1 = require("remarkable");
-const UndoRedo_1 = require("./UndoRedo");
 const AddEvtListener_1 = require("./AddEvtListener");
 const stateshot_1 = require("stateshot");
 const jspdf_1 = require("jspdf");
 class HtmlHandler {
-    constructor(histry = { history: "" }, markdownParser = new MdParser_1.MdParser(), rmkbl = new remarkable_1.Remarkable(), mkd = marked_1.marked, unrejs = new UndoRedo_1.UndoRedojs(0), unreHistory = new stateshot_1.History(), doc = new jspdf_1.jsPDF(), eInserter = new ElementInserter_1.ElementInserter(), markdown = (document.getElementById(UtilityCls_1.UtilityCls.inputElement)), markdownOutput = (document.getElementById(UtilityCls_1.UtilityCls.outputElement)), markdownTagMenuHolder = (document.getElementById(UtilityCls_1.UtilityCls.markdownTagMenuholderID))) {
+    constructor(histry = { history: "" }, 
+    //private markdownParser: MdParser = new MdParser(),
+    rmkbl = new remarkable_1.Remarkable(), 
+    //private mkd = marked,
+    //private unrejs = new UndoRedojs(0),
+    unreHistory = new stateshot_1.History(), doc = new jspdf_1.jsPDF(), eInserter = new ElementInserter_1.ElementInserter(), markdown = (document.getElementById(UtilityCls_1.UtilityCls.inputElement)), markdownOutput = (document.getElementById(UtilityCls_1.UtilityCls.outputElement)), markdownTagMenuHolder = (document.getElementById(UtilityCls_1.UtilityCls.markdownTagMenuholderID))) {
         this.histry = histry;
-        this.markdownParser = markdownParser;
         this.rmkbl = rmkbl;
-        this.mkd = mkd;
-        this.unrejs = unrejs;
         this.unreHistory = unreHistory;
         this.doc = doc;
         this.eInserter = eInserter;
@@ -49,6 +48,7 @@ class HtmlHandler {
             console.log("history lenght: ", this.unreHistory.length);
         });
         AddEvtListener_1.AddEvtListener.toElem("docExporter", "click", () => {
+            this.doc.addImage(img, "png", 10, 50);
             this.doc.html(this.markdownOutput.innerHTML, {
                 callback: function (doc) {
                     doc.save();
@@ -58,10 +58,12 @@ class HtmlHandler {
                 y: 10,
                 width: 180,
                 windowWidth: 1000,
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
             });
             console.log("PDF is being generated ");
         });
-        this.markdownOutput.innerHTML = this.markdownParser.parse(this.markdown.value);
+        this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
     }
     onloadMarkdownTagMenuInit() {
         const elements = this.markdownTagMenuHolder.children;

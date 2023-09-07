@@ -4,3 +4,6 @@ h2,
 h3 {
   font-family: "chunkfiveregular", Arial, sans-serif;
 }
+code {
+  display: block;
+}

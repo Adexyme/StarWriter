@@ -1,1 +1,1 @@
-# StarWriter
+# SuperWriter

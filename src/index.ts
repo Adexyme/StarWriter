@@ -1,10 +1,12 @@
 import { HtmlHandler } from "./HtmlHandler";
 import { ElementClassManager } from "./ElementClassManager";
+import { FileHandler } from "./FileHandler";
 
 const htmlHD = new HtmlHandler();
 htmlHD.onloadIOElemInit();
 htmlHD.TextChangeHandler();
 htmlHD.onloadMarkdownTagMenuInit();
+FileHandler.HtmlHandler = htmlHD;
 ElementClassManager.addClass("code", [
   "text-bg-dark",
   "border",

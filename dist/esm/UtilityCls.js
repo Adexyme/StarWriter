@@ -7,4 +7,6 @@ exports.UtilityCls = UtilityCls;
 UtilityCls.inputElement = "iput";
 UtilityCls.outputElement = "oput";
 UtilityCls.markdownTagMenuholderID = "elemsHolderBtn";
+UtilityCls.saveBTN = "saveBTN";
+UtilityCls.newBTN = "newBTN";
 //# sourceMappingURL=UtilityCls.js.map

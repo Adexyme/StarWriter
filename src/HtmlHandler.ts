@@ -7,10 +7,12 @@ import { UndoRedojs } from "./UndoRedo";
 import { AddEvtListener } from "./AddEvtListener";
 import { History } from "stateshot";
 import { jsPDF } from "jspdf";
+import { FileHandler } from "./FileHandler";
 
 export class HtmlHandler {
   constructor(
     private histry = { history: "" },
+    private fHandler = FileHandler,
     //private markdownParser: MdParser = new MdParser(),
     private rmkbl = new Remarkable(),
     //private mkd = marked,
@@ -28,6 +30,18 @@ export class HtmlHandler {
       document.getElementById(UtilityCls.markdownTagMenuholderID)
     )
   ) {}
+  public setMarkdown = (mkd: string) => {
+    this.markdown.value = mkd;
+  };
+  public setMarkdownOutput = (mkd: string) => {
+    this.markdownOutput.innerHTML = mkd;
+  };
+  public getMarkdown() {
+    return this.markdown.value;
+  }
+  public getMarkdownOutput() {
+    return this.markdownOutput.innerHTML;
+  }
   public TextChangeHandler(): void {
     if (this.markdown !== null) {
       this.markdown.onkeyup = (e) => {
@@ -67,6 +81,14 @@ export class HtmlHandler {
         html2canvas: { scale: 2 },
       });
       console.log("PDF is being generated ");
+    });
+
+    AddEvtListener.toElem("saveFileBTN", "click", () => {
+      this.fHandler.saveFile();
+    });
+
+    AddEvtListener.toElem("createNewFileBTN", "click", () => {
+      this.fHandler.createNewFile();
     });
 
     this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);

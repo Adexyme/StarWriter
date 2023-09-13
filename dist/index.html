@@ -12,6 +12,12 @@
     />
     <link
       rel="stylesheet"
+      href="css/loaderSpinner.css"
+      type="text/css"
+      charset="utf-8"
+    />
+    <link
+      rel="stylesheet"
       href="css/custom.css"
       type="text/css"
       charset="utf-8"
@@ -20,29 +26,127 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/slick-loader@1.1.20/slick-loader.min.css"
+    />
   </head>
-  <body class="bg-#f6d8ac" style="background-color: #f6d8ac">
-    <div class="container-fluid bg-#f6d8ac">
+  <body class="bg-warning" styler="background-color: #f2cd75 ">
+    <div class="container-fluid">
+      <div class="row bg-secondaryc">
+        <div class="col">
+          <button id="" class="btn btn-sm">
+            <img
+              src="img/logo.png"
+              alt="Avatar Logo"
+              style="width: 40px"
+              class="pill"
+            /></button
+          ><b>SuperWriter</b>
+          <div class="dropdown float-end border btn-success mt-2">
+            <a
+              class="btn btn-secondary dropdown-toggle"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Donate
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://flutterwave.com/donate/uxlzcvmirlc6"
+                  >$20</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://flutterwave.com/donate/pgegnpbmnna7"
+                  >$15</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://flutterwave.com/donate/jwnfwkigxruh"
+                  >$10</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://flutterwave.com/donate/jscdtbztjszh"
+                  >$5</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://flutterwave.com/donate/igohwanf1aul"
+                  >Others</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a
+            href="https://github.com/Adexyme/starWriter"
+            class="btn btn-sm mt-1 float-end"
+          >
+            <img
+              src="img/github.png"
+              alt="Avatar Logo"
+              style="width: 30px"
+              class="rounded-pill" /></a
+          ><button id="" class="btn btn-sm mt-1 float-end">
+            <img
+              src="img/windows.png"
+              alt="Avatar Logo"
+              style="width: 30px"
+              class="rounded-pill"
+            /></button
+          ><button class="btn btn-sm mt-1 float-end">
+            <img
+              src="img/android.png"
+              alt="Avatar Logo"
+              style="width: 30px"
+              class="rounded-pill"
+            />
+          </button>
+        </div>
+      </div>
+
       <div class="row bg-secondary">
         <div class="col">
-          <button
-            id="createNewFileBTN"
-            class="btn btn-sm border-end text-white"
-          >
-            new</button
-          ><button id="saveFileBTN" class="btn btn-sm border-end text-white">
-            save</button
-          ><span id="undoContainer"
-            ><button class="btn btn-sm border-end text-white">
-              undo
-            </button></span
-          ><span id="redoContainer"
-            ><button class="btn btn-sm border-end text-white">
-              redo
-            </button></span
-          ><button id="docExporter" class="btn btn-sm border-end text-white">
-            export</button
-          ><button class="btn btn-sm border-end text-white">import</button>
+          <span id="menuContainer">
+            <button
+              id="createNewFileBTN"
+              class="btn btn-sm border-end text-white"
+            >
+              new</button
+            ><button id="saveFileBTN" class="btn btn-sm border-end text-white">
+              save</button
+            ><span id="undoContainer"
+              ><button class="btn btn-sm border-end text-white">
+                undo
+              </button></span
+            ><span id="redoContainer"
+              ><button class="btn btn-sm border-end text-white">
+                redo
+              </button></span
+            ><button id="docExporter" class="btn btn-sm border-end text-white">
+              export</button
+            ><button class="btn btn-sm border-end text-white">import</button>
+          </span>
+          <button id="spinnerContainer" class="btn btn-sm text-white">
+            <span class="spinner-grow spinner-grow-sm invisible"></span>
+            <span class="invisible">Processing..</span>
+          </button>
         </div>
       </div>
 
@@ -132,9 +236,10 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/slick-loader@1.1.20/slick-loader.min.js"></script>
     <script src="umd/index.js"></script>
     <script>
-      //var eInserter = new ElementInserter();
+      //SlickLoader.enable();
     </script>
   </body>
 </html>

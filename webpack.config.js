@@ -14,7 +14,12 @@ module.exports = (env, argv) => {
       globalObject: "this",
     },
     module: {
-      rules: [{ test: /\.t|js$/, use: "babel-loader" }],
+      rules: [
+        {
+          test: /\.t|js$/,
+          use: ["babel-loader"],
+        },
+      ],
     },
     externals: {
       // only define the dependencies you are NOT using as externals!

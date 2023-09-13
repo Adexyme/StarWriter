@@ -10,11 +10,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FileHandler = void 0;
+const ElementClassManager_1 = require("./ElementClassManager");
+const UtilityCls_1 = require("./UtilityCls");
 class FileHandler {
 }
 exports.FileHandler = FileHandler;
-FileHandler.fileWriteableStream = null;
-FileHandler.getFileWriteableStream = function () {
+FileHandler.fileHandle = null;
+FileHandler.getFileHandle = function () {
     return __awaiter(this, void 0, void 0, function* () {
         const options = {
             types: [
@@ -27,28 +29,57 @@ FileHandler.getFileWriteableStream = function () {
             ],
         };
         const handle = yield window.showSaveFilePicker(options);
-        const writable = yield handle.createWritable();
-        return writable;
+        return handle;
     });
 };
 FileHandler.createNewFile = function () {
     return __awaiter(this, void 0, void 0, function* () {
-        if (FileHandler.fileWriteableStream !== null) {
+        ElementClassManager_1.ElementClassManager.disableElements4Groups([
+            UtilityCls_1.UtilityCls.menuContainer,
+            UtilityCls_1.UtilityCls.tagBtnContainer,
+        ]);
+        /*ElementClassManager.addAClass4Groups(
+          [UtilityCls.spinnerContainer],
+          "visible"
+        );
+        //ElementClassManager.removeAClass4Groups(
+          [UtilityCls.spinnerContainer],
+          "invisible"
+        );*/
+        if (FileHandler.fileHandle !== null) {
+            const writable = yield FileHandler.fileHandle.createWritable();
+            const mkdOutput = FileHandler.HtmlHandler.getMarkdown();
+            yield writable.write(mkdOutput);
             //close the stream for the old file
-            yield FileHandler.fileWriteableStream.close();
-            //clear out the markdown input and output for new file
+            yield writable.close();
+            FileHandler.fileHandle = null;
             FileHandler.HtmlHandler.setMarkdown("");
             FileHandler.HtmlHandler.setMarkdownOutput("");
         }
+        ElementClassManager_1.ElementClassManager.enableElements4Groups([
+            UtilityCls_1.UtilityCls.menuContainer,
+            UtilityCls_1.UtilityCls.tagBtnContainer,
+        ]);
+        /*ElementClassManager.addAClass4Groups(
+          [UtilityCls.spinnerContainer],
+          "invisible"
+        );*/
+        /*ElementClassManager.removeAClass4Groups(
+          [UtilityCls.spinnerContainer],
+          "visible"
+        );*/
     });
 };
 FileHandler.saveFile = function () {
     return __awaiter(this, void 0, void 0, function* () {
-        if (FileHandler.fileWriteableStream === null) {
-            FileHandler.fileWriteableStream =
-                yield FileHandler.getFileWriteableStream();
+        if (FileHandler.fileHandle === null) {
+            FileHandler.fileHandle = yield FileHandler.getFileHandle();
         }
-        yield FileHandler.fileWriteableStream.write(FileHandler.HtmlHandler.getMarkdown());
+        const writable = yield FileHandler.fileHandle.createWritable();
+        const mkdOutput = FileHandler.HtmlHandler.getMarkdown();
+        yield writable.write(mkdOutput);
+        //close the stream for the old file
+        yield writable.close();
         //await FileHandler.fileWriteableStream.close();
         //return handle;
     });

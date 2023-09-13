@@ -1,9 +1,11 @@
+import { ElementClassManager } from "./ElementClassManager";
 import { HtmlHandler } from "./HtmlHandler";
+import { UtilityCls } from "./UtilityCls";
 export class FileHandler {
   public static HtmlHandler: HtmlHandler;
-  public static fileWriteableStream: FileSystemWritableFileStream = null;
-  public static getFileWriteableStream =
-    async function (): Promise<FileSystemWritableFileStream> {
+  public static fileHandle: FileSystemFileHandle = null;
+  public static getFileHandle =
+    async function (): Promise<FileSystemFileHandle> {
       const options = {
         types: [
           {
@@ -16,27 +18,57 @@ export class FileHandler {
       };
 
       const handle = await window.showSaveFilePicker(options);
-      const writable = await handle.createWritable();
-      return writable;
+      return handle;
     };
   public static createNewFile = async function () {
-    if (FileHandler.fileWriteableStream !== null) {
+    ElementClassManager.disableElements4Groups([
+      UtilityCls.menuContainer,
+      UtilityCls.tagBtnContainer,
+    ]);
+    /*ElementClassManager.addAClass4Groups(
+      [UtilityCls.spinnerContainer],
+      "visible"
+    );
+    //ElementClassManager.removeAClass4Groups(
+      [UtilityCls.spinnerContainer],
+      "invisible"
+    );*/
+    if (FileHandler.fileHandle !== null) {
+      const writable = await FileHandler.fileHandle.createWritable();
+      const mkdOutput = FileHandler.HtmlHandler.getMarkdown();
+      await writable.write(mkdOutput);
       //close the stream for the old file
-      await FileHandler.fileWriteableStream.close();
-      //clear out the markdown input and output for new file
+      await writable.close();
+      FileHandler.fileHandle = null;
       FileHandler.HtmlHandler.setMarkdown("");
       FileHandler.HtmlHandler.setMarkdownOutput("");
     }
+
+    ElementClassManager.enableElements4Groups([
+      UtilityCls.menuContainer,
+      UtilityCls.tagBtnContainer,
+    ]);
+    /*ElementClassManager.addAClass4Groups(
+      [UtilityCls.spinnerContainer],
+      "invisible"
+    );*/
+    /*ElementClassManager.removeAClass4Groups(
+      [UtilityCls.spinnerContainer],
+      "visible"
+    );*/
   };
+
   public static saveFile = async function () {
-    if (FileHandler.fileWriteableStream === null) {
-      FileHandler.fileWriteableStream =
-        await FileHandler.getFileWriteableStream();
+    if (FileHandler.fileHandle === null) {
+      FileHandler.fileHandle = await FileHandler.getFileHandle();
     }
 
-    await FileHandler.fileWriteableStream.write(
-      FileHandler.HtmlHandler.getMarkdown()
-    );
+    const writable = await FileHandler.fileHandle.createWritable();
+    const mkdOutput = FileHandler.HtmlHandler.getMarkdown();
+    await writable.write(mkdOutput);
+    //close the stream for the old file
+    await writable.close();
+
     //await FileHandler.fileWriteableStream.close();
 
     //return handle;

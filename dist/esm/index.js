@@ -20,4 +20,5 @@ ElementClassManager_1.ElementClassManager.addClass("code", [
     "w-75",
 ]);
 ElementClassManager_1.ElementClassManager.addClass("img", ["mx-auto", "d-block"]);
+//LoaderSpinner.open(undefined);
 //# sourceMappingURL=index.js.map

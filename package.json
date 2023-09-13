@@ -33,6 +33,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
+    "@manz/pageload": "^1.0.2",
     "@types/marked": "^5.0.1",
     "jspdf": "^2.5.1",
     "marked": "^8.0.0",

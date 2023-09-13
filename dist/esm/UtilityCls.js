@@ -9,4 +9,7 @@ UtilityCls.outputElement = "oput";
 UtilityCls.markdownTagMenuholderID = "elemsHolderBtn";
 UtilityCls.saveBTN = "saveBTN";
 UtilityCls.newBTN = "newBTN";
+UtilityCls.menuContainer = "#menuContainer";
+UtilityCls.spinnerContainer = "#spinnerContainer";
+UtilityCls.tagBtnContainer = "#elemsHolderBtn";
 //# sourceMappingURL=UtilityCls.js.map

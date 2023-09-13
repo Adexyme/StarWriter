@@ -1,6 +1,8 @@
 import { HtmlHandler } from "./HtmlHandler";
 import { ElementClassManager } from "./ElementClassManager";
 import { FileHandler } from "./FileHandler";
+import PageLoad from "@manz/pageload";
+import { LoaderSpinner } from "./LoaderSpinner";
 
 const htmlHD = new HtmlHandler();
 htmlHD.onloadIOElemInit();
@@ -20,3 +22,5 @@ ElementClassManager.addClass("code", [
 ]);
 
 ElementClassManager.addClass("img", ["mx-auto", "d-block"]);
+
+//LoaderSpinner.open(undefined);

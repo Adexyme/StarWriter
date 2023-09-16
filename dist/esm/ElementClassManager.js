@@ -11,6 +11,16 @@ ElementClassManager.addClass = (classSelector, classNames) => {
         retElem.classList.add(...classNames);
     });
 };
+ElementClassManager.addClass2ManyElems = (objArr) => {
+    for (let i = 0; i < objArr.length; i++) {
+        const classSelector = objArr[i].classSelector;
+        const retElems = document.querySelectorAll(classSelector);
+        console.log(retElems); // NodeList[3]
+        retElems.forEach((retElem) => {
+            retElem.classList.add(...objArr[i].classNames);
+        });
+    }
+};
 ElementClassManager.addAClass = (parentSelector, className) => {
     const retElems = document.querySelectorAll(parentSelector);
     console.log(retElems); // NodeList[3]

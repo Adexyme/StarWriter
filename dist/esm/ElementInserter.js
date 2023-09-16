@@ -10,6 +10,9 @@ class ElementInserter {
             console.log(curPos);
             let x = this.cursorPosition.value;
             this.cursorPosition.value = x.slice(0, curPos) + elem + x.slice(curPos);
+            const len = curPos + elem.length;
+            this.cursorPosition.focus();
+            this.cursorPosition.selectionEnd = len;
         };
     }
 }

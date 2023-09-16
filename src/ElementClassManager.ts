@@ -1,3 +1,5 @@
+type objArr = { classSelector: string; classNames: string[] };
+
 export class ElementClassManager {
   public static addClass = (
     classSelector: string,
@@ -8,6 +10,17 @@ export class ElementClassManager {
     retElems.forEach((retElem) => {
       retElem.classList.add(...classNames);
     });
+  };
+
+  public static addClass2ManyElems = (objArr: objArr[]): void => {
+    for (let i = 0; i < objArr.length; i++) {
+      const classSelector = objArr[i].classSelector;
+      const retElems = document.querySelectorAll(classSelector);
+      console.log(retElems); // NodeList[3]
+      retElems.forEach((retElem) => {
+        retElem.classList.add(...objArr[i].classNames);
+      });
+    }
   };
 
   public static addAClass = (

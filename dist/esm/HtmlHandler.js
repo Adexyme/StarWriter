@@ -8,6 +8,8 @@ const AddEvtListener_1 = require("./AddEvtListener");
 const stateshot_1 = require("stateshot");
 const jspdf_1 = require("jspdf");
 const FileHandler_1 = require("./FileHandler");
+const ElementClassManager_1 = require("./ElementClassManager");
+const ElementClass_1 = require("./ElementClass");
 class HtmlHandler {
     constructor(histry = { history: "" }, fHandler = FileHandler_1.FileHandler, 
     //private markdownParser: MdParser = new MdParser(),
@@ -42,13 +44,15 @@ class HtmlHandler {
             this.markdown.onkeyup = (e) => {
                 if (this.markdown.value) {
                     this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
-                    //this.markdownOutput.innerHTML = this.mkd.parse(this.markdown.value);
+                    ElementClassManager_1.ElementClassManager.addClass2ManyElems(ElementClass_1.ElementClass.elemClsDetailArr);
                     this.histry.history = this.markdown.value;
                     this.unreHistory.pushSync(this.histry);
                     console.log("history lenght: ", this.unreHistory.length);
                 }
-                else
+                else {
                     this.markdownOutput.innerHTML = "<h1>Edit This Heading To Star</h1>";
+                    ElementClassManager_1.ElementClassManager.addClass2ManyElems(ElementClass_1.ElementClass.elemClsDetailArr);
+                }
             };
         }
     }
@@ -61,28 +65,15 @@ class HtmlHandler {
             this.markdown.value = this.unreHistory.redo().get().history;
             console.log("history lenght: ", this.unreHistory.length);
         });
-        AddEvtListener_1.AddEvtListener.toElem("docExporter", "click", () => {
-            this.doc.html(this.markdownOutput.innerHTML, {
-                callback: function (doc) {
-                    doc.save();
-                },
-                autoPaging: "text",
-                x: 10,
-                y: 10,
-                width: 180,
-                windowWidth: 1000,
-                image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 2 },
-            });
-            console.log("PDF is being generated ");
-        });
         AddEvtListener_1.AddEvtListener.toElem("saveFileBTN", "click", () => {
             this.fHandler.saveFile();
         });
         AddEvtListener_1.AddEvtListener.toElem("createNewFileBTN", "click", () => {
             this.fHandler.createNewFile();
         });
+        //this.setMarkdownOutput(this.getMarkdown());
         this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
+        ElementClassManager_1.ElementClassManager.addClass2ManyElems(ElementClass_1.ElementClass.elemClsDetailArr);
     }
     onloadMarkdownTagMenuInit() {
         const elements = this.markdownTagMenuHolder.children;
@@ -90,8 +81,9 @@ class HtmlHandler {
             console.log(elements[i]);
             elements[i].addEventListener("click", () => {
                 this.eInserter.insertAtCursorPosition("\r\n" + elements[i].getAttribute("data-tag-string"));
+                //this.setMarkdownOutput(this.getMarkdown());
                 this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
-                //this.markdownOutput.innerHTML = this.mkd.parse(this.markdown.value);
+                ElementClassManager_1.ElementClassManager.addClass2ManyElems(ElementClass_1.ElementClass.elemClsDetailArr);
                 this.histry.history = this.markdown.value;
                 this.unreHistory.pushSync(this.histry);
                 console.log("iteration worked", i);

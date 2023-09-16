@@ -8,7 +8,8 @@ import { AddEvtListener } from "./AddEvtListener";
 import { History } from "stateshot";
 import { jsPDF } from "jspdf";
 import { FileHandler } from "./FileHandler";
-
+import { ElementClassManager } from "./ElementClassManager";
+import { ElementClass } from "./ElementClass";
 export class HtmlHandler {
   constructor(
     private histry = { history: "" },
@@ -36,6 +37,7 @@ export class HtmlHandler {
   public setMarkdownOutput = (mkd: string) => {
     this.markdownOutput.innerHTML = mkd;
   };
+
   public getMarkdown() {
     return this.markdown.value;
   }
@@ -49,12 +51,17 @@ export class HtmlHandler {
           this.markdownOutput.innerHTML = this.rmkbl.render(
             this.markdown.value
           );
-          //this.markdownOutput.innerHTML = this.mkd.parse(this.markdown.value);
+
+          ElementClassManager.addClass2ManyElems(ElementClass.elemClsDetailArr);
+
           this.histry.history = this.markdown.value;
           this.unreHistory.pushSync(this.histry);
           console.log("history lenght: ", this.unreHistory.length);
-        } else
+        } else {
           this.markdownOutput.innerHTML = "<h1>Edit This Heading To Star</h1>";
+
+          ElementClassManager.addClass2ManyElems(ElementClass.elemClsDetailArr);
+        }
       };
     }
   }
@@ -67,21 +74,6 @@ export class HtmlHandler {
       this.markdown.value = this.unreHistory.redo().get().history;
       console.log("history lenght: ", this.unreHistory.length);
     });
-    AddEvtListener.toElem("docExporter", "click", () => {
-      this.doc.html(this.markdownOutput.innerHTML, {
-        callback: function (doc) {
-          doc.save();
-        },
-        autoPaging: "text",
-        x: 10,
-        y: 10,
-        width: 180,
-        windowWidth: 1000,
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-      });
-      console.log("PDF is being generated ");
-    });
 
     AddEvtListener.toElem("saveFileBTN", "click", () => {
       this.fHandler.saveFile();
@@ -90,8 +82,10 @@ export class HtmlHandler {
     AddEvtListener.toElem("createNewFileBTN", "click", () => {
       this.fHandler.createNewFile();
     });
-
+    //this.setMarkdownOutput(this.getMarkdown());
     this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
+
+    ElementClassManager.addClass2ManyElems(ElementClass.elemClsDetailArr);
   }
 
   public onloadMarkdownTagMenuInit(): void {
@@ -104,9 +98,11 @@ export class HtmlHandler {
         this.eInserter.insertAtCursorPosition(
           "\r\n" + elements[i].getAttribute("data-tag-string")
         );
-
+        //this.setMarkdownOutput(this.getMarkdown());
         this.markdownOutput.innerHTML = this.rmkbl.render(this.markdown.value);
-        //this.markdownOutput.innerHTML = this.mkd.parse(this.markdown.value);
+
+        ElementClassManager.addClass2ManyElems(ElementClass.elemClsDetailArr);
+
         this.histry.history = this.markdown.value;
         this.unreHistory.pushSync(this.histry);
 

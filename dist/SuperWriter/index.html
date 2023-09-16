@@ -4,7 +4,6 @@
     <title>StarWriter</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="manifest" href="/manifest.json" />
     <link
       rel="stylesheet"
       href="css/stylesheet.css"
@@ -112,12 +111,12 @@
               class="rounded-pill"
             /></button
           ><button class="btn btn-sm mt-1 float-end">
-            <imgf
+            <img
               src="img/android.png"
               alt="Avatar Logo"
               style="width: 30px"
               class="rounded-pill"
-            ></imgf>
+            />
           </button>
         </div>
       </div>
@@ -140,36 +139,9 @@
               ><button class="btn btn-sm border-end text-white">
                 redo
               </button></span
-            >
-            <div id="docExporter" class="dropdown btn text-white">
-              <a
-                class="btn btn-sm border-end btn-secondary dropdown-toggle"
-                href="#"
-                role="button"
-                id="dropdownMenuLink"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                export
-              </a>
-
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    onclick="printout('#oput', {header: '', footer: '',closeAfterPrint: false,})"
-                    >PDF</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#" onclick="">HTML</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#" onclick="">Markdown</a>
-                </li>
-              </ul>
-            </div>
+            ><button id="docExporter" class="btn btn-sm border-end text-white">
+              export</button
+            ><button class="btn btn-sm border-end text-white">import</button>
           </span>
           <button id="spinnerContainer" class="btn btn-sm text-white">
             <span class="spinner-grow spinner-grow-sm invisible"></span>
@@ -257,23 +229,17 @@
         <div class="col-sm-6">
           <div
             id="oput"
-            class="form-control bg-#f6d8ac visible-tablet"
+            class="form-control bg-#f6d8ac"
             style="width: 100%; min-height: 100vh; background-color: #ffffff"
           ></div>
         </div>
       </div>
     </div>
-    <script>
-      if (typeof navigator.serviceWorker !== "undefined") {
-        navigator.serviceWorker.register("sw.js");
-      }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/slick-loader@1.1.20/slick-loader.min.js"></script>
     <script src="umd/index.js"></script>
-    <script src="js/printout.js"></script>
     <script>
-      //printout('#oput');
+      //SlickLoader.enable();
     </script>
   </body>
 </html>

@@ -1,5 +1,10 @@
+type objArr = {
+    classSelector: string;
+    classNames: string[];
+};
 export declare class ElementClassManager {
     static addClass: (classSelector: string, classNames: string[]) => void;
+    static addClass2ManyElems: (objArr: objArr[]) => void;
     static addAClass: (parentSelector: string, className: string) => void;
     static addAClass4Groups: (parentSelectorArray: string[], className: string) => void;
     static removeAClass: (parentSelector: string, className: string) => void;
@@ -9,3 +14,4 @@ export declare class ElementClassManager {
     static enableElements: (parentSelector: string) => void;
     static enableElements4Groups: (parentSelectorArray: string[]) => void;
 }
+export {};
